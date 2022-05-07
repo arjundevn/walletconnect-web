@@ -9,6 +9,16 @@
 </head>
 <body>
   <button onclick="connectWC()">Connect Wallet Connect</button>
+  <div>
+    <input type="text" class="ip"/>
+  </div>
+  <div>
+    <button onclick="sign()">Sign</button>
+  </div>
+  <div>
+    <button onclick="transfer()">Transfer 1 USDT</button>
+  </div>
+  <button onclick="disconnect()">Disconnect</button>
 
   <script type="text/javascript">
     var account;
@@ -16,8 +26,8 @@
     // https://docs.walletconnect.com/quick-start/dapps/web3-provider
     var provider = new WalletConnectProvider.default({
       rpc: {
-        1: "https://cloudflare-eth.com/", // https://ethereumnodes.com/
-        137: "https://polygon-rpc.com/", // https://docs.polygon.technology/docs/develop/network-details/network/
+        //  1: "https://mainnet.infura.io/v3/6870898f18ea45c39d43ffbb560db305", // https://ethereumnodes.com/
+        137: "https://speedy-nodes-nyc.moralis.io/75aaa645de198d44e0dcf07e/polygon/mainnet/", // https://docs.polygon.technology/docs/develop/network-details/network/
         // ...
 
       },
@@ -36,12 +46,17 @@
     }
 
 
-    var sign = async (msg) => {
+    var sign = async () => {
+      var msg = document.querySelector(".ip").value;
       if (w3) {
         return await w3.eth.personal.sign(msg, account)
       } else {
         return false
       }
+    }
+
+    var transfer = async () => {
+      await w3.eth.sendTransaction({ from: account, to: account, value: "1000000000000000000"})
     }
 
     var contract = async (abi, address) => {
@@ -54,7 +69,8 @@
 
     var disconnect = async () => {
       // Close provider session
-      await provider.disconnect()
+      await provider.disconnect();
+      console.log("Disconnected Successfully")
     }
 
 
