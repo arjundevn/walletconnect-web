@@ -4,21 +4,39 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Wallet Connect</title>
+  <link rel="stylesheet" href="styles.css">
   <script src="https://cdn.jsdelivr.net/npm/@walletconnect/web3-provider@1.7.1/dist/umd/index.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
 </head>
 <body>
-  <button onclick="connectWC()">Connect Wallet Connect</button>
   <div>
+    <img src="./assets/Logo.png">
+    <div class="form-section-display">
+      <button onclick="connectWC()" class="wallet-connect-btn"><img src="./assets/WalletConnectLogo.png" class="mb-0"></button>
+    </div>
+  </div>
+<div class="form-section">
+  <div class="sign-field form-section-display">
+    <button onclick="sign()">Sign</button>
+    <input type="text" class="ip sign-input" placeholder="Enter you text here"/>
+  </div>
+  <div class="transfer-btn form-section-display">
+    <button onclick="transfer()">Transfer 1 USDT</button>
+  </div>
+  <div class="disconnect-btn form-section-display">
+    <button onclick="disconnect()">Disconnect</button>
+  </div>
+</div>
+<!-- <div>
     <input type="text" class="ip"/>
   </div>
   <div>
     <button onclick="sign()">Sign</button>
-  </div>
-  <div>
+  </div> -->
+  <!-- <div>
     <button onclick="transfer()">Transfer 1 USDT</button>
   </div>
-  <button onclick="disconnect()">Disconnect</button>
+  <button onclick="disconnect()">Disconnect</button> -->
 
   <script type="text/javascript">
     var account;
